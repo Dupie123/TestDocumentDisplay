@@ -1,0 +1,25 @@
+﻿@using DevExpress.AspNetCore
+@using DevExpress.AspNetCore.RichEdit
+
+@model DocumentModel
+@{
+    ViewData["Title"] = "Document";
+}
+
+<div class="h-100 d-flex justify-content-center align-items-center">
+    <div class="container">
+        @if (Model.DocumentBytes.Length > 0)
+        {
+            @(Html.DevExpress().RichEdit("richEdit")
+                .Height("80vh")
+                .ReadOnly(true)
+                .Views(v => v.ViewType(ViewType.Simple))
+                .Open(() => { return Model.DocumentBytes; }, (DevExpress.AspNetCore.RichEdit.DocumentFormat)Model.DocumentFormat)
+                .Ribbon(r => r
+                    .Tabs(t => {
+                        t.Clear();
+                    }))
+                )
+        }
+    </div>
+</div>
