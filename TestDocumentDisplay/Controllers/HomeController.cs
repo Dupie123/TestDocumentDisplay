@@ -23,7 +23,7 @@ namespace TestDocumentDisplay.Controllers
         public async Task<IActionResult> Document()
         {
             DocumentModel model = new DocumentModel();
-            string RelPath = "\\content\\Emails.docx";
+            string RelPath = "\\content\\Test.docx";
             string FullPath = _hostingEnvironment.WebRootPath + RelPath;
             if (System.IO.File.Exists(FullPath))
             {
@@ -33,7 +33,7 @@ namespace TestDocumentDisplay.Controllers
                     stream.CopyTo(memoryStream);
                 }
                 model.DocumentBytes = memoryStream.ToArray();
-                model.DocumentName = "Emails.docx";
+                model.DocumentName = "Test.docx";
                 model.SetFormat();
             }
 
